@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News App</title>
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    }
+    /* Preloader */
+    .prelooder {
+        position: fixed;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        background-color: #070707;
+        z-index: 10000000;
+    }
+    .prelooder::before {
+        content: 'Loading';
+        position: absolute;
+        font-size: 12rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.03);
+    }
+    .prelooder.active {
+        transform: translateY(-100vh);
+        transition: ease-in-out;
+        transition-delay: 1s;
+    }
+    .counter {
+        position: relative;
+        font-size: 12rem;
+        font-weight: bold;
+        color: #fff;
+        z-index: 1;
+    }
+    .counter::after {
+        content: '%';
+        color: #fff;
+        font-size: 5rem;
+    }
+    .hide {
+        opacity: 0;
+        transition: 1s;
+        pointer-events: none;
+    }
+    /*Section */
+    section{
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+    }
+    section h1{
+        font-size: 5rem;
+        color: darkcyan;
+    }
+    section p{
+        padding-top: 10px;
+        line-height: 1.4;
+    }
+    </style>
+</head>
+<body>
+    <div class="preloader_1">
+        <div class="contianer">
+            <div class="prelooder">
+                <div class="counter">0</div>
+            </div>
+            <section class="news_body">
+                <div class="body">
+                    <h1>Preloader in CSS</h1>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        var counter = document.querySelector('.counter');
+    var preloader = document.querySelector('.prelooder')
+
+    var c =0;
+    function preloading(){
+        var count = setInterval(() => {
+            counter.textContent=c++;
+            console.log(c);
+            if(c==101){
+                clearInterval(count)
+                counter.classList.add('hide');
+                preloader.classList.add('active');
+            }
+        },60);
+    }
+
+preloading();
+    </script>
+</body>
+</html>
